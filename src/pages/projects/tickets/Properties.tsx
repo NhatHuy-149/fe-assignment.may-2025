@@ -5,7 +5,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/selectcustom"
 import { properties } from "@/constant/ticket"
 import {  ChevronRight } from "lucide-react"
 

@@ -38,13 +38,13 @@ const data = {
   navMain: [
     {
       title: "Overview",
-      url: "#",
+      url: "/",
       icon: LayoutDashboard,
       isActive: true,
     },
     {
       title: "A1.1 - Projects",
-      url: "/",
+      url: "/project",
       icon: NotebookPen,
     },
     {

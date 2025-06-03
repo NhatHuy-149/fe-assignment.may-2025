@@ -12,7 +12,7 @@ export default function AppRouter() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-            <Route path="/" element={<TicketDetails />}/>
+            <Route path="/project" element={<TicketDetails />}/>
             <Route path="/estimator" element={<Package />}/>
             <Route path="/user" element={<UserManagement />}/>
             <Route path="/customer" element={<CustomerList />}/>
