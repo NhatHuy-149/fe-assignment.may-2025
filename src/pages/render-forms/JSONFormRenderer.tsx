@@ -14,9 +14,16 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import VietnameseAddressInput from "./VietnameseAddressInput"
+import {  ArrowBigRight, ArrowRight } from "lucide-react"
 
 const JSONFormRenderer = () => {
   const dispatch = useDispatch()
@@ -92,40 +99,82 @@ const JSONFormRenderer = () => {
     return null
   }
 
+  const templateJson = {
+    type: "object",
+    properties: {
+      fullName: {
+        type: "string",
+        title: "Họ và tên"
+      },
+      age: {
+        type: "number",
+        title: "Tuổi"
+      },
+      gender: {
+        type: "string",
+        title: "Giới tính",
+        enum: ["Nam", "Nữ", "Khác"]
+      },
+      address: {
+        type: "string",
+        title: "Địa chỉ",
+        format: "vietnam-address"
+      }
+    }
+  }
+
+  const handleUseTemplate = () => {
+    const formatted = JSON.stringify(templateJson, null, 2)
+    dispatch(setSchemaText(formatted))
+    dispatch(setSchema(templateJson))
+  }
+
   return (
-    <div className="container mx-auto py-6 space-y-6 grid grid-cols-2 gap-3">
-      <Card>
+    <div className="h-[calc(100vh-6rem)] container mx-auto py-6 flex w-full justify-between items-center gap-3">
+      <Card className="min-h-0 h-full w-[46%]">
         <CardHeader>
           <CardTitle>JSON Schema Input</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="overflow-y-auto h-[calc(100%-3rem)]">
           <Textarea
-            className="min-h-[300px] mb-4"
+            className="flex-1 h-full overflow-auto"
             value={schemaText}
             onChange={(e) => dispatch(setSchemaText(e.target.value))}
           />
-          <Button onClick={handleRender}>Render Form</Button>
         </CardContent>
+        <CardFooter>
+          <Button onClick={handleRender} className="mr-2">Render Form</Button>
+          <Button onClick={handleUseTemplate} variant="secondary">Use Template Json</Button>
+        </CardFooter>
       </Card>
-
-      <Card>
+      <ArrowBigRight fill="#171717" className="w-14 h-14 text-[#171717]" />
+      <Card className="min-h-0 h-full w-[46%]">
         <CardHeader>
           <CardTitle>Generated Form</CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-col gap-4">
-          {schema?.properties &&
-            Object.entries(schema.properties).map(([key, field]: any) => (
-              <div key={key} className="space-y-1">
-                <label className="block font-medium">
-                  {field.title || key}
-                </label>
-                {renderField(key, field)}
-              </div>
-            ))}
-          <Button className="max-w-fit" variant="destructive" onClick={() => dispatch(resetAll())}>
+        <CardContent className="overflow-y-auto h-[calc(100%-3rem)]">
+          <div className="flex-1  ">
+            {schema?.properties &&
+              Object.entries(schema.properties).map(([key, field]: any) => (
+                <div key={key} className="space-y-1 mb-4">
+                  <label className="block font-medium">
+                    {field.title || key}
+                  </label>
+                  {renderField(key, field)}
+                </div>
+              ))}
+          </div>
+        </CardContent>
+
+        <CardFooter>
+          <Button
+            className="max-w-fit"
+            variant="destructive"
+            onClick={() => dispatch(resetAll())}
+          >
             Reset Data
           </Button>
-        </CardContent>
+        </CardFooter>
       </Card>
     </div>
   )

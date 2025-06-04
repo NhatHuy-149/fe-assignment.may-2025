@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button"
 import { workPackages } from "@/constant/estimator"
-import {Search, ChevronRight, ShoppingCart } from "lucide-react"
+import { Search, ChevronRight } from "lucide-react"
 import { Input } from "@/components/ui/input"
+import { ShoppingCartIcon } from "@/assets/icons/ShoppingCartIcon"
 
 function WorkPackage() {
   return (
@@ -17,7 +18,10 @@ function WorkPackage() {
               key={pkg.id}
               className="flex flex-col gap-4 border rounded-lg p-4 hover:shadow-md transition-shadow"
             >
-              <h3 className="font-semibold text-black ">{pkg.title}</h3>
+              <div className="flex justify-between">
+                <h3 className="font-semibold text-black ">{pkg.title}</h3>
+                <ChevronRight className="w-6 h-6 " />
+              </div>
               <p className="text-sm text-muted-foreground ">
                 {pkg.description}
               </p>
@@ -26,8 +30,10 @@ function WorkPackage() {
                 <ChevronRight className="w-6 h-6 bg-blue-50 border-gray border-[1px]" />
               </div>
               <div className="flex justify-between items-center">
-                <Button size="sm">View Detail</Button>
-                <ShoppingCart className="w-6 h-6 text-blue" />
+                <Button size="sm" className="bg-[#f3f4f6] rounded-lg">
+                  View Detail
+                </Button>
+                <ShoppingCartIcon />
               </div>
             </div>
           ))}
