@@ -1,4 +1,4 @@
-import type { ColumnDef, PaginationState, ColumnFiltersState } from "@tanstack/react-table"
+import type { ColumnDef } from "@tanstack/react-table"
 import { DataTable } from "@/components/ui/data-table"
 import data from "./data.json"
 import { Button } from "@/components/ui/button"

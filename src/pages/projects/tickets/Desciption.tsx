@@ -1,6 +1,6 @@
 import { activities, ticketData } from "@/constant/ticket"
 import { Typography } from "@/components/ui/typography"
-import { Clock, FileText, ArrowUp } from "lucide-react" // Add ArrowUp import
+import { Clock, FileText, ArrowUp } from "lucide-react" 
 
 function Desciption() {
   return (

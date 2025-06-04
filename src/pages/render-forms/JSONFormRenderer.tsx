@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import VietnameseAddressInput from "./VietnameseAddressInput"
-import {  ArrowBigRight, ArrowRight } from "lucide-react"
+import {  ArrowBigRight } from "lucide-react"
 
 const JSONFormRenderer = () => {
   const dispatch = useDispatch()
